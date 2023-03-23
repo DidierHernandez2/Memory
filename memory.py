@@ -11,7 +11,6 @@ Exercises:
 
 from random import *
 from turtle import *
-
 from freegames import path
 
 car = path('car.gif')
@@ -19,6 +18,7 @@ tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
 cuenta=0
+largo="nada"
 
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
@@ -64,7 +64,7 @@ def draw():
     goto(0, 0)
     shape(car)
     stamp()
-
+    global largo
     for count in range(64):
         if hide[count]:
             x, y = xy(count)
@@ -74,10 +74,19 @@ def draw():
 
     if mark is not None and hide[mark]:
         x, y = xy(mark)
+        
+
         up()
-        goto(x + 2, y)
-        color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        largo=str(tiles[mark])
+        if len(largo)>=2:
+            goto(x+10, y)
+            color('black')
+            write(tiles[mark], font=('Arial', 20, 'normal'))
+        else:
+            goto(x+20, y)
+            color('black')
+            write(tiles[mark], font=('Arial', 20, 'normal'))
+
 
     update()
     ontimer(draw, 100)
