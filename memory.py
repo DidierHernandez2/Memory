@@ -79,13 +79,13 @@ def draw():
         up()
         largo=str(tiles[mark])
         if len(largo)>=2:
-            goto(x+10, y)
+            goto(x+5, y)
             color('black')
-            write(tiles[mark], font=('Arial', 20, 'normal'))
+            write(tiles[mark], font=('Arial', 30, 'normal'))
         else:
-            goto(x+20, y)
+            goto(x+15, y)
             color('black')
-            write(tiles[mark], font=('Arial', 20, 'normal'))
+            write(tiles[mark], font=('Arial', 30, 'normal'))
 
 
     update()
