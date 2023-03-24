@@ -1,13 +1,4 @@
-"""Memory, puzzle game of number pairs.
 
-Exercises:
-
-1. Count and print how many taps occur.
-2. Decrease the number of tiles to a 4x4 grid.
-3. Detect when all tiles are revealed.
-4. Center single-digit tile.
-5. Use letters instead of tiles.
-"""
 
 from random import *
 from turtle import *
@@ -59,8 +50,9 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
-
-
+        pares+=1
+        if (pares==32):
+            print("Todos los cuadrados se han destapado")
 def draw():
     """Draw image and tiles."""
     clear()
