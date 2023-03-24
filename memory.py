@@ -59,9 +59,6 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
-        pares+=1
-        if(pares==32):
-            print("Todos los cuadros se han destapado")
 
 
 def draw():
