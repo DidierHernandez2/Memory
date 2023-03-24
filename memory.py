@@ -19,7 +19,9 @@ state = {'mark': None}
 hide = [True] * 64
 cuenta=0
 largo="nada"
-
+pares=0
+numerosromanos=["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX", "XXXI"]
+indice=0
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
     up()
@@ -48,6 +50,7 @@ def tap(x, y):
     spot = index(x, y)
     mark = state['mark']
     global cuenta
+    global pares
     cuenta=cuenta+1
     print(f'Cuenta de Taps: {cuenta}')
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
@@ -56,6 +59,9 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+        pares+=1
+        if(pares==32):
+            print("Todos los cuadros se han destapado")
 
 
 def draw():
@@ -65,6 +71,8 @@ def draw():
     shape(car)
     stamp()
     global largo
+    global indice
+    global numerosromanos
     for count in range(64):
         if hide[count]:
             x, y = xy(count)
@@ -74,19 +82,25 @@ def draw():
 
     if mark is not None and hide[mark]:
         x, y = xy(mark)
-        
-
         up()
+        indice=tiles[mark]
         largo=str(tiles[mark])
-        if len(largo)>=2:
-            goto(x+5, y)
+        if len(largo)==3:
+            goto(x+8, y+15)
             color('black')
-            write(tiles[mark], font=('Arial', 30, 'normal'))
+            write(numerosromanos[indice], font=('Arial', 10, 'normal'))
+        elif len(largo)==4:
+            goto(x+2, y+15)
+            color('black')
+            write(numerosromanos[indice], font=('Arial', 10, 'normal'))
+        elif len(largo)>=5:
+            goto(x, y+15)
+            color('black')
+            write(numerosromanos[indice], font=('Arial', 5, 'normal'))
         else:
-            goto(x+15, y)
+            goto(x+20, y+15)
             color('black')
-            write(tiles[mark], font=('Arial', 30, 'normal'))
-
+            write(numerosromanos[indice], font=('Arial', 10, 'normal'))
 
     update()
     ontimer(draw, 100)
